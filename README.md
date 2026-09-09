@@ -1,56 +1,57 @@
-# Welcome to your Expo app 👋
+# 🥸 Mustache Finance Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> A mobile application for personal financial organization and planning.
 
-## Get started
+## 🚧 Project Status
 
-1. Install dependencies
+**Under Construction**
 
-   ```bash
-   npm install
-   ```
+Mustache Finance Mobile is currently under active development.
 
-2. Start the app
+The project is being built as the mobile version of **Mustache Finance**, a personal finance application focused on helping users organize their finances, track their income and expenses, and plan for their financial goals.
 
-   ```bash
-   npx expo start
-   ```
+## 📱 About the Project
 
-In the output, you'll find options to open the app in a
+Mustache Finance Mobile aims to provide a simple, modern, and intuitive experience for managing personal finances directly from a mobile device.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+The application will allow users to:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- 💰 Manage income
+- 💸 Track expenses
+- 🎯 Create and monitor financial plans
+- 📊 View financial information and reports
+- 🔐 Manage their account securely
+- ☁️ Synchronize financial data through Firebase
 
-## Get a fresh project
+## 🛠️ Technologies
 
-When you're ready, run:
+The project is being developed using:
 
-```bash
-npm run reset-project
-```
+- **React Native**
+- **Expo**
+- **TypeScript**
+- **Expo Router**
+- **Firebase**
+- **Firestore**
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🎨 Project Philosophy
 
-### Other setup steps
+Mustache Finance is designed around a simple idea:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+> **Take control of your money. Take control of your plans.**
 
-## Learn more
+The mobile application follows the same visual identity and core concepts established in the Mustache Finance web application, while providing an experience specifically designed for mobile devices.
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📂 Project Structure
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+The application follows a modular architecture designed to keep screens, components, services, and styles separated and maintainable.
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```text
+src/
+├── app/           # Application routes
+├── pages/         # Application screens
+├── components/    # Reusable components
+├── firebase/      # Firebase configuration
+├── services/      # Application services
+├── types/         # TypeScript types
+└── utils/         # Utility functions
