@@ -11,23 +11,25 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
 
-  title: {
-    color: colors.white,
-    fontSize: 28,
-    fontWeight: "700",
-  },
   logo: {
-    width: 400,
-    height: 400,
+    width: 380,
+    height: 380,
     resizeMode: "contain",
   },
   subtitle: {
-    marginTop: 24,
-    fontSize: 19,
+    marginTop: -170,
+    fontSize: 15,
     lineHeight: 27,
     fontWeight: "700",
     textAlign: "center",
     color: colors.white,
+
+    textShadowColor: "rgb(0, 0, 0)",
+    textShadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    textShadowRadius: 3,
   },
 
   highlightGold: {
@@ -51,7 +53,7 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundColor: "rgba(1, 2, 3, 0.8)",
+    backgroundColor: "rgba(13, 47, 80, 0.93)",
   },
 
   contentForeground: {

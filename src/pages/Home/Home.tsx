@@ -1,6 +1,7 @@
 import { useVideoPlayer, VideoView } from "expo-video";
 import { Image, Text, View } from "react-native";
 
+import { StartButton } from "./components/StartButton";
 import { styles } from "./styles/Home.styles";
 
 export default function Home() {
@@ -34,6 +35,8 @@ export default function Home() {
           Take control of your <Text style={styles.highlightGold}>money</Text>{" "}
           and your <Text style={styles.highlightTeal}>plans.</Text>
         </Text>
+
+        <StartButton />
       </View>
     </View>
   );
