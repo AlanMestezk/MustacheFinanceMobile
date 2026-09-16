@@ -1,8 +1,15 @@
+import { useRouter } from "expo-router";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./styles/LoginForm.styles";
 
 export const LoginForm = () => {
+  const router = useRouter();
+
+  const handleRegister = () => {
+    router.push("/register");
+  };
+
   return (
     <View style={styles.form}>
       <TextInput
@@ -28,7 +35,7 @@ export const LoginForm = () => {
         <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.register}>
+      <TouchableOpacity style={styles.register} onPress={handleRegister}>
         <Text style={styles.registerText}>
           Primeira vez aqui?{" "}
           <Text style={styles.registerHighlight}>Crie sua conta aqui</Text>

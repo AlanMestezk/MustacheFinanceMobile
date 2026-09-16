@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   keyboardAvoidingView: {
     flex: 1,
   },
+
   container: {
     flex: 1,
     backgroundColor: colors.background,
@@ -46,8 +47,7 @@ export const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 24,
     fontWeight: "700",
-    marginTop: -120,
-
+    marginTop: -150,
     textShadowColor: "rgb(0, 0, 0)",
     textShadowOffset: {
       width: 0,

@@ -44,17 +44,37 @@ export const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 16,
     fontFamily: "Popins",
+
+    textShadowColor: "rgb(0, 0, 0)",
+    textShadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    textShadowRadius: 3,
   },
 
   register: {
     alignItems: "center",
     marginTop: 8,
+    textShadowColor: "rgb(0, 0, 0)",
+    textShadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    textShadowRadius: 3,
   },
 
   registerText: {
     color: colors.white,
     fontSize: 16,
     fontFamily: "Popins",
+
+    textShadowColor: "rgb(0, 0, 0)",
+    textShadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    textShadowRadius: 3,
   },
 
   registerHighlight: {
