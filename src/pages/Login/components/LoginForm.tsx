@@ -31,7 +31,10 @@ export const LoginForm = () => {
         <Text style={styles.buttonText}>ENTRAR</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.forgotPassword}>
+      <TouchableOpacity
+        style={styles.forgotPassword}
+        onPress={() => router.push("/forgot-password")}
+      >
         <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
       </TouchableOpacity>
 

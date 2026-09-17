@@ -5,23 +5,23 @@ import { colors } from "../../../../styles/colors";
 export const styles = StyleSheet.create({
   form: {
     width: "80%",
-    marginTop: 10,
-    gap: 20,
+    marginTop: 28,
+    gap: 24,
   },
 
   input: {
     height: 48,
     color: colors.white,
     fontSize: 16,
+    fontWeight: "bold",
     borderBottomWidth: 3,
     borderBottomColor: "rgb(255, 255, 255)",
     paddingHorizontal: 4,
     paddingVertical: 0,
-    fontWeight: "bold",
   },
 
   button: {
-    marginTop: 8,
+    marginTop: 12,
     backgroundColor: colors.primary,
     paddingVertical: 14,
     borderRadius: 12,
@@ -38,13 +38,13 @@ export const styles = StyleSheet.create({
 
   login: {
     alignItems: "center",
-    marginTop: 8,
+    marginTop: 4,
     fontFamily: "Popins",
   },
 
   loginText: {
-    color: "white",
-    fontSize: 16,
+    color: colors.white,
+    fontSize: 14,
     fontFamily: "Popins",
   },
 

@@ -19,6 +19,12 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.08)",
   },
 
+  photo: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 45,
+  },
+
   camera: {
     fontSize: 28,
   },

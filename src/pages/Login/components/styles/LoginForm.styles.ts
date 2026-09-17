@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   input: {
     height: 48,
     color: colors.white,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
     borderBottomWidth: 3,
     borderBottomColor: "rgba(255, 255, 255, 0.97)",
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     textShadowColor: "rgb(0, 0, 0)",
     textShadowOffset: {
       width: 0,
-      height: 3,
+      height: 1,
     },
     textShadowRadius: 3,
   },
@@ -59,9 +59,9 @@ export const styles = StyleSheet.create({
     textShadowColor: "rgb(0, 0, 0)",
     textShadowOffset: {
       width: 0,
-      height: 3,
+      height: 1,
     },
-    textShadowRadius: 3,
+    textShadowRadius: 1,
   },
 
   registerText: {
@@ -72,7 +72,7 @@ export const styles = StyleSheet.create({
     textShadowColor: "rgb(0, 0, 0)",
     textShadowOffset: {
       width: 0,
-      height: 4,
+      height: 1,
     },
     textShadowRadius: 3,
   },
