@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 0,
   },
 
+  error: {
+    color: "#ff6b6b",
+    fontSize: 13,
+    textAlign: "center",
+  },
+
   button: {
     marginTop: 12,
     backgroundColor: colors.primary,
