@@ -32,6 +32,8 @@ export const styles = StyleSheet.create({
   label: {
     marginTop: 8,
     color: colors.textSecondary,
-    fontSize: 13,
+    fontSize: 17,
+    fontFamily: "Popins",
+    fontWeight: "bold",
   },
 });

@@ -39,18 +39,33 @@ export const styles = StyleSheet.create({
   login: {
     alignItems: "center",
     marginTop: 4,
-    fontFamily: "Popins",
+    width: "100%",
   },
 
   loginText: {
     color: colors.white,
     fontSize: 14,
     fontFamily: "Popins",
+    textAlign: "center",
   },
 
   loginHighlight: {
     color: colors.primaryLight,
+    fontSize: 14,
     fontWeight: "700",
     fontFamily: "Popins",
+    textAlign: "center",
+  },
+  error: {
+    color: "#ff6b6b",
+    fontSize: 13,
+    textAlign: "center",
+  },
+
+  success: {
+    color: "#4ade80",
+    fontSize: 18,
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });

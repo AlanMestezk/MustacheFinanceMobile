@@ -53,4 +53,9 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontFamily: "Popins",
   },
+  error: {
+    color: "#ff6b6b",
+    fontSize: 13,
+    textAlign: "center",
+  },
 });
