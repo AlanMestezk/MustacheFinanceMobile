@@ -26,33 +26,33 @@ export const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundColor: "rgba(13, 47, 80, 0.93)",
+    backgroundColor: "rgba(13, 47, 80, 0.90)",
   },
 
   contentForeground: {
     flex: 1,
     alignItems: "center",
     paddingHorizontal: 24,
-    paddingTop: 10,
+    paddingTop: 35,
   },
 
   logo: {
-    width: 350,
-    height: 350,
+    width: 280,
+    height: 120,
     resizeMode: "contain",
-    marginTop: -70,
   },
 
   title: {
     color: colors.white,
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "700",
-    marginTop: -150,
-    textShadowColor: "rgb(0, 0, 0)",
+    marginTop: 10,
+
+    textShadowColor: "rgba(0, 0, 0, 0.45)",
     textShadowOffset: {
       width: 0,
-      height: 4,
+      height: 2,
     },
-    textShadowRadius: 3,
+    textShadowRadius: 4,
   },
 });

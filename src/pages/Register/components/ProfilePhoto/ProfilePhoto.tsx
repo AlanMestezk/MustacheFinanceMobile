@@ -2,6 +2,7 @@ import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
+import { Feather } from "@expo/vector-icons";
 import { styles } from "./styles/ProfilePhoto.styles";
 
 export const ProfilePhoto = () => {
@@ -26,7 +27,7 @@ export const ProfilePhoto = () => {
         {image ? (
           <Image source={{ uri: image }} style={styles.photo} />
         ) : (
-          <Text style={styles.camera}>📷</Text>
+          <Feather name="camera" size={28} color="rgba(255, 255, 255, 0.75)" />
         )}
       </TouchableOpacity>
 
