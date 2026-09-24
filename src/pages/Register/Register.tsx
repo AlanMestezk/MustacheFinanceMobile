@@ -1,11 +1,18 @@
 import { useVideoPlayer, VideoView } from "expo-video";
+
+import { useState } from "react";
+
 import { Image, Text, View } from "react-native";
 
 import { ProfilePhoto } from "./components/ProfilePhoto/ProfilePhoto";
+
 import { RegisterForm } from "./components/RegisterForm";
+
 import { styles } from "./styles/Register.styles";
 
 export const Register = () => {
+  const [image, setImage] = useState<string | null>(null);
+
   const player = useVideoPlayer(
     require("../../../assets/images/vidMustache.mp4"),
     (player) => {
@@ -34,9 +41,9 @@ export const Register = () => {
 
         <Text style={styles.title}>Create your account</Text>
 
-        <ProfilePhoto />
+        <ProfilePhoto image={image} onImageSelected={setImage} />
 
-        <RegisterForm />
+        <RegisterForm image={image} />
       </View>
     </View>
   );

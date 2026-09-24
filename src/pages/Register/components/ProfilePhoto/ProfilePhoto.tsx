@@ -1,13 +1,17 @@
 import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
+
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { Feather } from "@expo/vector-icons";
+
 import { styles } from "./styles/ProfilePhoto.styles";
 
-export const ProfilePhoto = () => {
-  const [image, setImage] = useState<string | null>(null);
+interface ProfilePhotoProps {
+  image: string | null;
+  onImageSelected: (uri: string) => void;
+}
 
+export const ProfilePhoto = ({ image, onImageSelected }: ProfilePhotoProps) => {
   const handlePickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["images"],
@@ -17,7 +21,7 @@ export const ProfilePhoto = () => {
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      onImageSelected(result.assets[0].uri);
     }
   };
 
