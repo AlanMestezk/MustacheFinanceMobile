@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
 
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { auth } from "../../firebase/auth";
 
@@ -14,8 +14,16 @@ import { Navbar } from "./components/NavBar/NavBar";
 
 import { styles } from "./styles/Main.styles";
 
+import { router } from "expo-router";
+
+import { colors } from "@/styles/colors";
+// @ts-ignore
+import appIcon from "../../../assets/logo/icon.png";
+
 export const Main = () => {
   const [name, setName] = useState("");
+
+  const [photoURL, setPhotoURL] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUser = async () => {
@@ -31,7 +39,10 @@ export const Main = () => {
         if (userDoc.exists()) {
           const userData = userDoc.data();
 
+          console.log("Dados do Firestore:", userData);
+
           setName(userData.name);
+          setPhotoURL(userData.photoUrl);
         }
       } catch (error) {
         console.error("Erro ao carregar usuário:", error);
@@ -44,16 +55,21 @@ export const Main = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View>
-          <Text style={styles.greeting}>Olá, {name || "usuário"}! 👋</Text>
-
-          <Text style={styles.subtitle}>
-            Aqui está o resumo das suas finanças.
-          </Text>
-        </View>
-
         <TouchableOpacity style={styles.profileButton}>
-          <Feather name="user" size={21} color={styles.profileIcon.color} />
+          {photoURL ? (
+            <Image source={{ uri: photoURL }} style={styles.profilePhoto} />
+          ) : (
+            <Feather name="user" size={21} color={styles.profileIcon.color} />
+          )}
+        </TouchableOpacity>
+
+        <Image source={appIcon} style={styles.appIcon} />
+
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => router.push("/new-transaction")}
+        >
+          <Feather name="plus" size={34} color={colors.primary} />
         </TouchableOpacity>
       </View>
 
@@ -95,20 +111,32 @@ export const Main = () => {
         </View>
       </View>
 
-      <View style={styles.transactionsHeader}>
-        <Text style={styles.sectionTitle}>Transações recentes</Text>
+      <View style={styles.goalCard}>
+        <View style={styles.goalHeader}>
+          <Text style={styles.sectionTitle}>Meta recente</Text>
+        </View>
 
-        <Text style={styles.seeAll}>Ver todas</Text>
-      </View>
+        <View style={styles.goalTop}>
+          <View style={styles.goalIconContainer}>
+            <Feather name="target" size={24} color={colors.primary} />
+          </View>
 
-      <View style={styles.emptyState}>
-        <Feather name="inbox" size={32} color={styles.emptyIcon.color} />
+          <View style={styles.goalInfo}>
+            <Text style={styles.goalTitle}>Nenhuma meta criada</Text>
 
-        <Text style={styles.emptyTitle}>Nenhuma transação ainda</Text>
+            <Text style={styles.goalDescription}>
+              Crie uma meta para começar a acompanhar seus objetivos.
+            </Text>
+          </View>
+        </View>
 
-        <Text style={styles.emptyDescription}>
-          Suas transações aparecerão aqui.
-        </Text>
+        <View style={styles.goalProgressContainer}>
+          <View style={styles.goalProgressBackground}>
+            <View style={styles.goalProgress} />
+          </View>
+
+          <Text style={styles.goalProgressText}>0%</Text>
+        </View>
       </View>
 
       <Navbar />
