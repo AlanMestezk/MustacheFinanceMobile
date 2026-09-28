@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import { Transactions } from "../../pages/Transactions/Transactions";
 
 export default function TransactionsScreen() {
-  return (
-    <View>
-      <Text>Transações</Text>
-    </View>
-  );
+  return <Transactions />;
 }

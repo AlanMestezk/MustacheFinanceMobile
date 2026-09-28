@@ -10,7 +10,6 @@ import { auth } from "../../firebase/auth";
 
 import { db } from "../../firebase/firestore";
 
-import { Navbar } from "./components/NavBar/NavBar";
 
 import { styles } from "./styles/Main.styles";
 
@@ -138,8 +137,6 @@ export const Main = () => {
           <Text style={styles.goalProgressText}>0%</Text>
         </View>
       </View>
-
-      <Navbar />
     </View>
   );
 };
