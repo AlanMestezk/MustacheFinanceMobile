@@ -10,7 +10,6 @@ import { auth } from "../../firebase/auth";
 
 import { db } from "../../firebase/firestore";
 
-
 import { styles } from "./styles/Main.styles";
 
 import { router } from "expo-router";
@@ -37,8 +36,6 @@ export const Main = () => {
 
         if (userDoc.exists()) {
           const userData = userDoc.data();
-
-          console.log("Dados do Firestore:", userData);
 
           setName(userData.name);
           setPhotoURL(userData.photoUrl);
