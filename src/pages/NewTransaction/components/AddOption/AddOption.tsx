@@ -9,6 +9,7 @@ interface AddOptionProps {
   description: string;
   icon: keyof typeof Feather.glyphMap;
   type: "income" | "expense" | "goal";
+  onPress: () => void;
 }
 
 export const AddOption = ({
@@ -16,9 +17,21 @@ export const AddOption = ({
   description,
   icon,
   type,
+  onPress,
 }: AddOptionProps) => {
   return (
-    <TouchableOpacity style={styles.wrapper} activeOpacity={0.8}>
+    <TouchableOpacity
+      style={[
+        styles.wrapper,
+        type === "income"
+          ? styles.incomeBorder
+          : type === "expense"
+            ? styles.expenseBorder
+            : styles.goalBorder,
+      ]}
+      activeOpacity={0.8}
+      onPress={onPress}
+    >
       <LinearGradient
         colors={
           type === "income"
