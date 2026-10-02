@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import { Goals } from "../../pages/Goals/Goals";
 
 export default function GoalsScreen() {
-  return (
-    <View>
-      <Text>Metas</Text>
-    </View>
-  );
+  return <Goals />;
 }
