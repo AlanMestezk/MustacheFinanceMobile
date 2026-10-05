@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 24,
+    padding: 12,
   },
 
   logoText: {
@@ -49,8 +50,8 @@ export const styles = StyleSheet.create({
   },
 
   appIcon: {
-    width: 52,
-    height: 52,
+    width: 72,
+    height: 72,
     resizeMode: "contain",
   },
 
