@@ -1,4 +1,6 @@
 import { Feather } from "@expo/vector-icons";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useState } from "react";
 import { Modal, Text, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./styles/TransactionFilterModal.styles";
@@ -6,12 +8,30 @@ import { styles } from "./styles/TransactionFilterModal.styles";
 interface TransactionFilterModalProps {
   visible: boolean;
   onClose: () => void;
+  onViewReport: (startDate: Date, endDate: Date) => void;
 }
 
 export const TransactionFilterModal = ({
   visible,
   onClose,
+  onViewReport,
 }: TransactionFilterModalProps) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [showStartPicker, setShowStartPicker] = useState(false);
+
+  const [endDate, setEndDate] = useState(new Date());
+  const [showEndPicker, setShowEndPicker] = useState(false);
+
+  const handleViewReport = () => {
+    const normalizedStartDate = new Date(startDate);
+    normalizedStartDate.setHours(0, 0, 0, 0);
+
+    const normalizedEndDate = new Date(endDate);
+    normalizedEndDate.setHours(23, 59, 59, 999);
+
+    onViewReport(normalizedStartDate, normalizedEndDate);
+  };
+
   return (
     <Modal
       visible={visible}
@@ -42,50 +62,84 @@ export const TransactionFilterModal = ({
           <Text style={styles.sectionTitle}>Período</Text>
 
           <View style={styles.dateRow}>
-            <TouchableOpacity style={styles.dateField}>
+            {/* DATA INICIAL */}
+            <TouchableOpacity
+              style={styles.dateField}
+              onPress={() => setShowStartPicker(true)}
+              activeOpacity={0.7}
+            >
               <Text style={styles.dateLabel}>De</Text>
 
               <View style={styles.dateButton}>
                 <Feather name="calendar" size={19} style={styles.dateIcon} />
 
-                <Text style={styles.dateText}>01/09/2026</Text>
+                <Text style={styles.dateText}>
+                  {startDate.toLocaleDateString("pt-BR")}
+                </Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.dateField}>
+            {showStartPicker && (
+              <DateTimePicker
+                value={startDate}
+                mode="date"
+                display="default"
+                onChange={(event, selectedDate) => {
+                  setShowStartPicker(false);
+
+                  if (selectedDate) {
+                    setStartDate(selectedDate);
+                  }
+                }}
+              />
+            )}
+
+            {/* DATA FINAL */}
+            <TouchableOpacity
+              style={styles.dateField}
+              onPress={() => setShowEndPicker(true)}
+              activeOpacity={0.7}
+            >
               <Text style={styles.dateLabel}>Até</Text>
 
               <View style={styles.dateButton}>
                 <Feather name="calendar" size={19} style={styles.dateIcon} />
 
-                <Text style={styles.dateText}>28/09/2026</Text>
+                <Text style={styles.dateText}>
+                  {endDate.toLocaleDateString("pt-BR")}
+                </Text>
               </View>
             </TouchableOpacity>
-          </View>
 
-          <TouchableOpacity style={styles.applyButton}>
-            <Text style={styles.applyButtonText}>Aplicar filtro</Text>
-          </TouchableOpacity>
+            {showEndPicker && (
+              <DateTimePicker
+                value={endDate}
+                mode="date"
+                display="default"
+                onChange={(event, selectedDate) => {
+                  setShowEndPicker(false);
+
+                  if (selectedDate) {
+                    setEndDate(selectedDate);
+                  }
+                }}
+              />
+            )}
+          </View>
 
           <View style={styles.divider} />
 
-          <View>
-            <Text style={styles.reportTitle}>Relatório</Text>
+          <TouchableOpacity
+            style={styles.pdfButton}
+            onPress={handleViewReport}
+            activeOpacity={0.7}
+          >
+            <Feather name="file-text" size={22} style={styles.pdfIcon} />
 
-            <Text style={styles.reportDescription}>
-              Baixe um relatório em PDF do período
-              {"\n"}
-              selecionado
-            </Text>
+            <Text style={styles.pdfText}>Visualizar relatório</Text>
 
-            <TouchableOpacity style={styles.pdfButton}>
-              <Feather name="file-text" size={22} style={styles.pdfIcon} />
-
-              <Text style={styles.pdfText}>Baixar relatório em PDF</Text>
-
-              <Feather name="chevron-right" size={22} style={styles.pdfArrow} />
-            </TouchableOpacity>
-          </View>
+            <Feather name="chevron-right" size={22} style={styles.pdfArrow} />
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>

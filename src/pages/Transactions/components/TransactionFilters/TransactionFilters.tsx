@@ -5,12 +5,23 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { TransactionFilterModal } from "../TransactionFilterModal/TransactionFilterModal";
 import { styles } from "./styles/TransactionFilters.styles";
 
-export const TransactionFilters = () => {
+interface TransactionFiltersProps {
+  onViewReport: (startDate: Date, endDate: Date) => void;
+}
+
+export const TransactionFilters = ({
+  onViewReport,
+}: TransactionFiltersProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleOpenModal = () => {
-    console.log("CLICOU NO FILTRO");
     setModalVisible(true);
+  };
+
+  const handleViewReport = (startDate: Date, endDate: Date) => {
+    setModalVisible(false);
+
+    onViewReport(startDate, endDate);
   };
 
   return (
@@ -32,6 +43,7 @@ export const TransactionFilters = () => {
       <TransactionFilterModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
+        onViewReport={handleViewReport}
       />
     </>
   );

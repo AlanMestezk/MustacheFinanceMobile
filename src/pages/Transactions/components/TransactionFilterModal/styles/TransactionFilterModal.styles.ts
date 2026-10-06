@@ -152,35 +152,31 @@ export const styles = StyleSheet.create({
   },
 
   pdfButton: {
-    height: 58,
-
     flexDirection: "row",
     alignItems: "center",
-
     paddingHorizontal: 16,
-
-    backgroundColor: "rgba(255, 255, 255, 0.06)",
-
+    paddingVertical: 16,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: "rgba(240, 184, 60, 0.30)",
-
+    borderColor: colors.primary,
     borderRadius: 16,
   },
 
   pdfIcon: {
-    color: colors.primary,
-    marginRight: 12,
+    color: colors.background,
   },
 
   pdfText: {
     flex: 1,
-
-    color: colors.white,
+    color: colors.background,
     fontSize: 14,
     fontWeight: "700",
+    marginLeft: 12,
+    fontFamily: "Popins",
   },
 
   pdfArrow: {
-    color: "rgba(255, 255, 255, 0.55)",
+    color: colors.background,
+    fontFamily: "Popins",
   },
 });

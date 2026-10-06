@@ -27,4 +27,15 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "600",
   },
+  loadingText: {
+    color: colors.white,
+    textAlign: "center",
+    marginTop: 20,
+  },
+
+  emptyText: {
+    color: "rgba(255,255,255,0.6)",
+    textAlign: "center",
+    marginTop: 20,
+  },
 });
