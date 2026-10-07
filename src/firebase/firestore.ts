@@ -61,7 +61,8 @@ export const getUserInvestments = async (
 ): Promise<Investment[]> => {
   const investmentsRef = collection(db, "users", uid, "investments");
 
-  const investmentsQuery = query(investmentsRef, orderBy("date", "desc"));
+  // Mais recente adicionada primeiro
+  const investmentsQuery = query(investmentsRef, orderBy("createdAt", "desc"));
 
   const snapshot = await getDocs(investmentsQuery);
 
