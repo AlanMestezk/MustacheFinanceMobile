@@ -1,4 +1,5 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./styles/CategoryPicker.styles";
@@ -16,27 +17,38 @@ export const CategoryPicker = ({
   onSelect,
   categories,
 }: CategoryPickerProps) => {
-  const getCategoryIcon = (category: string): keyof typeof Feather.glyphMap => {
-    const icons: Record<string, keyof typeof Feather.glyphMap> = {
-      Renda: "briefcase",
-      "Renda extra": "dollar-sign",
-      Investimentos: "trending-up",
-      Presente: "gift",
-      Prêmio: "award",
-      Reembolso: "rotate-ccw",
-      Outros: "package",
+  const getCategoryIcon = (
+    category: string,
+  ): keyof typeof MaterialCommunityIcons.glyphMap => {
+    const icons: Record<string, keyof typeof MaterialCommunityIcons.glyphMap> =
+      {
+        // Categorias de entrada
+        Renda: "briefcase",
+        "Renda extra": "cash-plus",
+        Investimentos: "trending-up",
+        Presente: "gift",
+        Prêmio: "trophy",
+        Reembolso: "cash-refund",
+        Outros: "package-variant",
 
-      // Categorias que serão utilizadas futuramente
-      Alimentação: "coffee",
-      Transporte: "truck",
-      Casa: "home",
-      Lazer: "play-circle",
-      Compras: "shopping-bag",
-      Saúde: "heart",
-      Educação: "book",
-      Contas: "credit-card",
-      Entretenimento: "play-circle",
-    };
+        // Categorias de saída
+        Alimentação: "food",
+        Transporte: "car",
+        Casa: "home",
+        Lazer: "party-popper",
+        Compras: "shopping",
+        Saúde: "heart-pulse",
+        Educação: "book-open-variant",
+        Contas: "credit-card-outline",
+        Entretenimento: "movie-open",
+
+        // Categorias de metas
+        Viagem: "bag-checked",
+        Tecnologia: "cellphone",
+        Veículo: "car",
+        Estudo: "book-open-variant",
+        Investimento: "trending-up",
+      };
 
     return icons[category] || "tag";
   };
@@ -83,9 +95,9 @@ export const CategoryPicker = ({
                   activeOpacity={0.7}
                 >
                   <View style={styles.categoryIcon}>
-                    <Feather
+                    <MaterialCommunityIcons
                       name={getCategoryIcon(category)}
-                      size={19}
+                      size={20}
                       style={styles.icon}
                     />
                   </View>

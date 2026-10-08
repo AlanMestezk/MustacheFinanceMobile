@@ -164,4 +164,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "800",
   },
+  selectIcon: {
+    color: "rgba(255, 255, 255, 0.45)",
+  },
 });

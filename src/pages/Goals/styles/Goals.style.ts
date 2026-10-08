@@ -64,4 +64,17 @@ export const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.40)",
     fontSize: 13,
   },
+  loadingText: {
+    color: "rgba(255, 255, 255, 0.50)",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 24,
+  },
+
+  emptyText: {
+    color: "rgba(255, 255, 255, 0.45)",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 24,
+  },
 });
