@@ -1,21 +1,30 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Modal,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { auth } from "../../../../firebase/auth";
 import { db } from "../../../../firebase/firestore";
 
-import { CategoryPicker } from "../NewTransactionHeader/components/CategoryModal/CategoryPicker";
+import { getCategoryIcon } from "../CategoryIcons/categoryIcons";
+import { CategoryPicker } from "../CategoryModal/CategoryPicker";
 import { styles } from "./styles/GoalModal.styles";
 
 interface GoalModalProps {
   visible: boolean;
   onClose: () => void;
+  onReopen: () => void;
 }
 
-export const GoalModal = ({ visible, onClose }: GoalModalProps) => {
+export const GoalModal = ({ visible, onClose, onReopen }: GoalModalProps) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [goalAmount, setGoalAmount] = useState("");
@@ -25,6 +34,9 @@ export const GoalModal = ({ visible, onClose }: GoalModalProps) => {
   const [datePickerVisible, setDatePickerVisible] = useState(false);
 
   const [categoryPickerVisible, setCategoryPickerVisible] = useState(false);
+
+  const [openCategoryAfterDismiss, setOpenCategoryAfterDismiss] =
+    useState(false);
 
   const [saving, setSaving] = useState(false);
 
@@ -43,6 +55,40 @@ export const GoalModal = ({ visible, onClose }: GoalModalProps) => {
     const normalizedValue = value.replace(/\./g, "").replace(",", ".");
 
     return Number(normalizedValue);
+  };
+
+  const handleOpenCategoryPicker = () => {
+    if (Platform.OS === "ios") {
+      setOpenCategoryAfterDismiss(true);
+      onClose();
+      return;
+    }
+
+    setCategoryPickerVisible(true);
+  };
+
+  const handleGoalModalDismiss = () => {
+    if (openCategoryAfterDismiss) {
+      setOpenCategoryAfterDismiss(false);
+      setCategoryPickerVisible(true);
+    }
+  };
+
+  const handleCloseCategoryPicker = () => {
+    setCategoryPickerVisible(false);
+  };
+
+  const handleCategoryPickerDismiss = () => {
+    if (Platform.OS === "ios") {
+      requestAnimationFrame(() => {
+        onReopen();
+      });
+    }
+  };
+
+  const handleSelectCategory = (selectedCategory: string) => {
+    setCategory(selectedCategory);
+    handleCloseCategoryPicker();
   };
 
   const handleCreateGoal = async () => {
@@ -109,6 +155,7 @@ export const GoalModal = ({ visible, onClose }: GoalModalProps) => {
         transparent
         animationType="slide"
         onRequestClose={onClose}
+        onDismiss={handleGoalModalDismiss}
       >
         <View style={styles.overlay}>
           <View style={styles.container}>
@@ -158,10 +205,18 @@ export const GoalModal = ({ visible, onClose }: GoalModalProps) => {
 
                 <TouchableOpacity
                   style={styles.inputContainer}
-                  onPress={() => setCategoryPickerVisible(true)}
+                  onPress={handleOpenCategoryPicker}
                   activeOpacity={0.7}
                 >
-                  <Feather name="tag" size={18} style={styles.inputIcon} />
+                  {category ? (
+                    <MaterialCommunityIcons
+                      name={getCategoryIcon(category)}
+                      size={18}
+                      style={styles.inputIcon}
+                    />
+                  ) : (
+                    <Feather name="tag" size={18} style={styles.inputIcon} />
+                  )}
 
                   <Text style={styles.selectText}>
                     {category || "Selecionar categoria"}
@@ -262,8 +317,9 @@ export const GoalModal = ({ visible, onClose }: GoalModalProps) => {
 
       <CategoryPicker
         visible={categoryPickerVisible}
-        onClose={() => setCategoryPickerVisible(false)}
-        onSelect={(selectedCategory) => setCategory(selectedCategory)}
+        onClose={handleCloseCategoryPicker}
+        onSelect={handleSelectCategory}
+        onDismiss={handleCategoryPickerDismiss}
         categories={goalCategories}
       />
     </>

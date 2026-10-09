@@ -1,29 +1,46 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useState } from "react";
-import { Modal, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Modal,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import { auth } from "../../../../firebase/auth";
 import { db } from "../../../../firebase/firestore";
 
-import { CategoryPicker } from "../NewTransactionHeader/components/CategoryModal/CategoryPicker";
+import { getCategoryIcon } from "../CategoryIcons/categoryIcons";
+import { CategoryPicker } from "../CategoryModal/CategoryPicker";
 import { styles } from "./styles/IncomeModal.styles";
 
 interface IncomeModalProps {
   visible: boolean;
   onClose: () => void;
+  onReopen: () => void;
 }
 
-export const IncomeModal = ({ visible, onClose }: IncomeModalProps) => {
+export const IncomeModal = ({
+  visible,
+  onClose,
+  onReopen,
+}: IncomeModalProps) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [date, setDate] = useState(new Date());
+
   const [datePickerVisible, setDatePickerVisible] = useState(false);
 
   const [categoryPickerVisible, setCategoryPickerVisible] = useState(false);
+
+  const [openCategoryAfterDismiss, setOpenCategoryAfterDismiss] =
+    useState(false);
 
   const [saving, setSaving] = useState(false);
 
@@ -36,6 +53,40 @@ export const IncomeModal = ({ visible, onClose }: IncomeModalProps) => {
     "Reembolso",
     "Outros",
   ];
+
+  const handleOpenCategoryPicker = () => {
+    if (Platform.OS === "ios") {
+      setOpenCategoryAfterDismiss(true);
+      onClose();
+      return;
+    }
+
+    setCategoryPickerVisible(true);
+  };
+
+  const handleIncomeModalDismiss = () => {
+    if (openCategoryAfterDismiss) {
+      setOpenCategoryAfterDismiss(false);
+      setCategoryPickerVisible(true);
+    }
+  };
+
+  const handleCloseCategoryPicker = () => {
+    setCategoryPickerVisible(false);
+  };
+
+  const handleCategoryPickerDismiss = () => {
+    if (Platform.OS === "ios") {
+      requestAnimationFrame(() => {
+        onReopen();
+      });
+    }
+  };
+
+  const handleSelectCategory = (selectedCategory: string) => {
+    setCategory(selectedCategory);
+    handleCloseCategoryPicker();
+  };
 
   const handleAddIncome = async () => {
     const user = auth.currentUser;
@@ -50,15 +101,15 @@ export const IncomeModal = ({ visible, onClose }: IncomeModalProps) => {
       return;
     }
 
+    const numericAmount = Number(amount.replace(",", "."));
+
+    if (isNaN(numericAmount) || numericAmount <= 0) {
+      console.log("Valor da entrada inválido.");
+      return;
+    }
+
     try {
       setSaving(true);
-
-      const numericAmount = Number(amount.replace(",", "."));
-
-      if (isNaN(numericAmount) || numericAmount <= 0) {
-        console.log("Valor da entrada inválido.");
-        return;
-      }
 
       await addDoc(collection(db, "users", user.uid, "incomes"), {
         amount: numericAmount,
@@ -90,6 +141,7 @@ export const IncomeModal = ({ visible, onClose }: IncomeModalProps) => {
         transparent
         animationType="slide"
         onRequestClose={onClose}
+        onDismiss={handleIncomeModalDismiss}
       >
         <View style={styles.overlay}>
           <View style={styles.container}>
@@ -156,10 +208,18 @@ export const IncomeModal = ({ visible, onClose }: IncomeModalProps) => {
 
                 <TouchableOpacity
                   style={styles.inputContainer}
-                  onPress={() => setCategoryPickerVisible(true)}
+                  onPress={handleOpenCategoryPicker}
                   activeOpacity={0.7}
                 >
-                  <Feather name="tag" size={18} style={styles.inputIcon} />
+                  {category ? (
+                    <MaterialCommunityIcons
+                      name={getCategoryIcon(category)}
+                      size={18}
+                      style={styles.inputIcon}
+                    />
+                  ) : (
+                    <Feather name="tag" size={18} style={styles.inputIcon} />
+                  )}
 
                   <Text style={styles.selectText}>
                     {category || "Selecionar categoria"}
@@ -223,8 +283,9 @@ export const IncomeModal = ({ visible, onClose }: IncomeModalProps) => {
 
       <CategoryPicker
         visible={categoryPickerVisible}
-        onClose={() => setCategoryPickerVisible(false)}
-        onSelect={(selectedCategory) => setCategory(selectedCategory)}
+        onClose={handleCloseCategoryPicker}
+        onSelect={handleSelectCategory}
+        onDismiss={handleCategoryPickerDismiss}
         categories={incomeCategories}
       />
     </>

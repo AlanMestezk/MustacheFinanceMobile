@@ -61,4 +61,15 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
   },
+  actions: {
+    alignItems: "flex-end",
+    justifyContent: "center",
+    gap: 8,
+  },
+
+  actionButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 14,
+  },
 });

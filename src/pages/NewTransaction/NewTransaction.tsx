@@ -50,16 +50,19 @@ export const NewTransaction = () => {
       <IncomeModal
         visible={incomeModalVisible}
         onClose={() => setIncomeModalVisible(false)}
+        onReopen={() => setIncomeModalVisible(true)}
       />
 
       <ExpenseModal
         visible={expenseModalVisible}
         onClose={() => setExpenseModalVisible(false)}
+        onReopen={() => setExpenseModalVisible(true)}
       />
 
       <GoalModal
         visible={goalModalVisible}
         onClose={() => setGoalModalVisible(false)}
+        onReopen={() => setGoalModalVisible(true)}
       />
     </ScrollView>
   );

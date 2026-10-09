@@ -1,7 +1,7 @@
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
+import { getCategoryIcon } from "../CategoryIcons/categoryIcons";
 import { styles } from "./styles/CategoryPicker.styles";
 
 interface CategoryPickerProps {
@@ -9,51 +9,18 @@ interface CategoryPickerProps {
   onClose: () => void;
   onSelect: (category: string) => void;
   categories: string[];
+  onDismiss?: () => void;
 }
 
 export const CategoryPicker = ({
   visible,
   onClose,
   onSelect,
+  onDismiss,
   categories,
 }: CategoryPickerProps) => {
-  const getCategoryIcon = (
-    category: string,
-  ): keyof typeof MaterialCommunityIcons.glyphMap => {
-    const icons: Record<string, keyof typeof MaterialCommunityIcons.glyphMap> =
-      {
-        // Categorias de entrada
-        Renda: "briefcase",
-        "Renda extra": "cash-plus",
-        Investimentos: "trending-up",
-        Presente: "gift",
-        Prêmio: "trophy",
-        Reembolso: "cash-refund",
-        Outros: "package-variant",
-
-        // Categorias de saída
-        Alimentação: "food",
-        Transporte: "car",
-        Casa: "home",
-        Lazer: "party-popper",
-        Compras: "shopping",
-        Saúde: "heart-pulse",
-        Educação: "book-open-variant",
-        Contas: "credit-card-outline",
-        Entretenimento: "movie-open",
-
-        // Categorias de metas
-        Viagem: "bag-checked",
-        Tecnologia: "cellphone",
-        Veículo: "car",
-        Estudo: "book-open-variant",
-        Investimento: "trending-up",
-      };
-
-    return icons[category] || "tag";
-  };
-
   const handleSelect = (category: string) => {
+    console.log("Categoria selecionada:", category);
     onSelect(category);
     onClose();
   };
@@ -63,7 +30,9 @@ export const CategoryPicker = ({
       visible={visible}
       transparent
       animationType="slide"
+      presentationStyle="overFullScreen"
       onRequestClose={onClose}
+      onDismiss={onDismiss}
     >
       <View style={styles.overlay}>
         <View style={styles.container}>
@@ -84,7 +53,7 @@ export const CategoryPicker = ({
           <ScrollView
             style={styles.categoryScroll}
             showsVerticalScrollIndicator={false}
-            nestedScrollEnabled
+            keyboardShouldPersistTaps="handled"
           >
             <View style={styles.categoryList}>
               {categories.map((category) => (

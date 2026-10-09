@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "../../../../styles/colors";
 import { styles } from "./styles/TransactionCard.styles";
@@ -11,6 +11,8 @@ interface TransactionCardProps {
   amount: string;
   type: "income" | "expense";
   icon: keyof typeof Feather.glyphMap;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
 export const TransactionCard = ({
@@ -20,6 +22,8 @@ export const TransactionCard = ({
   amount,
   type,
   icon,
+  onEdit,
+  onDelete,
 }: TransactionCardProps) => {
   return (
     <View style={styles.container}>
@@ -35,11 +39,31 @@ export const TransactionCard = ({
         </Text>
       </View>
 
-      <Text
-        style={type === "income" ? styles.incomeAmount : styles.expenseAmount}
-      >
-        {amount}
-      </Text>
+      <View style={styles.actions}>
+        <Text
+          style={type === "income" ? styles.incomeAmount : styles.expenseAmount}
+        >
+          {amount}
+        </Text>
+
+        <View style={styles.actionButtons}>
+          <TouchableOpacity
+            onPress={onEdit}
+            activeOpacity={0.7}
+            accessibilityLabel="Editar transação"
+          >
+            <Feather name="edit-2" size={17} color={colors.primary} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={onDelete}
+            activeOpacity={0.7}
+            accessibilityLabel="Excluir transação"
+          >
+            <Feather name="trash-2" size={17} color="#EF4444" />
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };

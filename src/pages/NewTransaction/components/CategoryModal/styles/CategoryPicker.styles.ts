@@ -4,9 +4,19 @@ import { colors } from "@/styles/colors";
 
 export const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 999,
+    elevation: 20,
     backgroundColor: "rgba(0, 0, 0, 0.65)",
     justifyContent: "flex-end",
+  },
+
+  backdrop: {
+    ...StyleSheet.absoluteFill,
   },
 
   container: {
@@ -19,6 +29,8 @@ export const styles = StyleSheet.create({
     paddingBottom: 24,
     paddingHorizontal: 20,
     maxHeight: "75%",
+    zIndex: 1000,
+    elevation: 21,
   },
 
   handle: {
@@ -94,6 +106,8 @@ export const styles = StyleSheet.create({
     color: "rgba(255, 255, 255, 0.40)",
   },
   categoryScroll: {
+    flexGrow: 0,
+    flexShrink: 1,
     maxHeight: 480,
   },
 });
