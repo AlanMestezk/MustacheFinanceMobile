@@ -46,6 +46,11 @@ export const Goals = () => {
   const [editedAmount, setEditedAmount] = useState("");
   const [saving, setSaving] = useState(false);
 
+  // Estados do modal de exclusão
+  const [deleteVisible, setDeleteVisible] = useState(false);
+  const [goalToDelete, setGoalToDelete] = useState<Goal | null>(null);
+  const [deleting, setDeleting] = useState(false);
+
   // Estados do modal de sucesso
   const [feedbackModal, setFeedbackModal] = useState(false);
   const [feedbackType, setFeedbackType] = useState<"updated" | "completed">(
@@ -111,50 +116,48 @@ export const Goals = () => {
     setEditedAmount("");
   };
 
-  // Excluir uma meta após confirmação
+  // Abre o modal de confirmação de exclusão
   const handleDeleteGoal = (goal: Goal) => {
-    Alert.alert(
-      "Excluir meta",
-      `Tem certeza que deseja excluir a meta "${goal.description}"? Essa ação não poderá ser desfeita.`,
-      [
-        {
-          text: "Cancelar",
-          style: "cancel",
-        },
-        {
-          text: "Excluir",
-          style: "destructive",
-          onPress: async () => {
-            const user = auth.currentUser;
-
-            if (!user) {
-              Alert.alert(
-                "Atenção",
-                "Você precisa estar logado para excluir uma meta.",
-              );
-              return;
-            }
-
-            try {
-              await deleteUserInvestment(user.uid, goal.id);
-
-              setGoals((currentGoals) =>
-                currentGoals.filter((item) => item.id !== goal.id),
-              );
-
-              Alert.alert("Sucesso", "Meta excluída com sucesso!");
-            } catch (error) {
-              console.error("Erro ao excluir meta:", error);
-              Alert.alert(
-                "Erro",
-                "Não foi possível excluir a meta. Tente novamente.",
-              );
-            }
-          },
-        },
-      ],
-    );
+    setGoalToDelete(goal);
+    setDeleteVisible(true);
   };
+
+  // Fecha o modal de exclusão
+  const handleCloseDelete = () => {
+    if (deleting) return;
+
+    setDeleteVisible(false);
+    setGoalToDelete(null);
+  };
+
+  // Confirma e executa a exclusão no Firestore
+  const handleConfirmDelete = async () => {
+    const user = auth.currentUser;
+
+    if (!user || !goalToDelete) {
+      Alert.alert("Atenção", "Não foi possível identificar a meta.");
+      return;
+    }
+
+    try {
+      setDeleting(true);
+
+      await deleteUserInvestment(user.uid, goalToDelete.id);
+
+      setGoals((currentGoals) =>
+        currentGoals.filter((goal) => goal.id !== goalToDelete.id),
+      );
+
+      setDeleteVisible(false);
+      setGoalToDelete(null);
+    } catch (error) {
+      console.error("Erro ao excluir meta:", error);
+      Alert.alert("Erro", "Não foi possível excluir a meta. Tente novamente.");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   // Salva o novo valor acumulado
   const handleSaveGoalAmount = async () => {
     const user = auth.currentUser;
@@ -468,6 +471,114 @@ export const Goals = () => {
                 ) : (
                   <Text style={{ color: "#171923", fontWeight: "700" }}>
                     Confirmar
+                  </Text>
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Modal de confirmação de exclusão */}
+      <Modal
+        visible={deleteVisible}
+        transparent
+        animationType="fade"
+        onRequestClose={handleCloseDelete}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 24,
+            backgroundColor: "rgba(0,0,0,0.78)",
+          }}
+        >
+          <View
+            style={{
+              width: "100%",
+              maxWidth: 380,
+              alignItems: "center",
+              padding: 26,
+              borderRadius: 24,
+              backgroundColor: "#171923",
+              borderWidth: 1,
+              borderColor: "#343746",
+            }}
+          >
+            <Image
+              source={require("../../../assets/logo/icon.png")}
+              style={{ width: 90, height: 90, marginBottom: 18 }}
+              resizeMode="contain"
+            />
+
+            <Text
+              style={{
+                color: "#FFFFFF",
+                fontSize: 21,
+                fontWeight: "700",
+                textAlign: "center",
+                marginBottom: 10,
+              }}
+            >
+              Excluir meta?
+            </Text>
+
+            <Text
+              style={{
+                color: "#A7A9B7",
+                fontSize: 14,
+                lineHeight: 21,
+                textAlign: "center",
+                marginBottom: 24,
+              }}
+            >
+              Deseja realmente excluir a meta "{goalToDelete?.description}"?
+              Essa ação não poderá ser desfeita.
+            </Text>
+
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 12,
+                width: "100%",
+              }}
+            >
+              <TouchableOpacity
+                disabled={deleting}
+                onPress={handleCloseDelete}
+                style={{
+                  flex: 1,
+                  padding: 14,
+                  borderRadius: 12,
+                  alignItems: "center",
+                  backgroundColor: "#2B2E3B",
+                  opacity: deleting ? 0.6 : 1,
+                }}
+              >
+                <Text style={{ color: "#E5E7EB", fontWeight: "600" }}>
+                  Cancelar
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                disabled={deleting}
+                onPress={handleConfirmDelete}
+                style={{
+                  flex: 1,
+                  padding: 14,
+                  borderRadius: 12,
+                  alignItems: "center",
+                  backgroundColor: "#D9534F",
+                  opacity: deleting ? 0.7 : 1,
+                }}
+              >
+                {deleting ? (
+                  <ActivityIndicator color="#FFFFFF" />
+                ) : (
+                  <Text style={{ color: "#FFFFFF", fontWeight: "700" }}>
+                    Excluir
                   </Text>
                 )}
               </TouchableOpacity>
