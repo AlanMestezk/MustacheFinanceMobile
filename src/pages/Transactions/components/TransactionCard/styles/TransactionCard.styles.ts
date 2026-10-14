@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
 
-    padding: 16,
+    padding: 10,
 
     backgroundColor: "rgba(255, 255, 255, 0.06)",
     borderWidth: 1,
@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
   },
 
   iconContainer: {
-    width: 46,
-    height: 46,
+    width: 36,
+    height: 36,
     borderRadius: 15,
 
     alignItems: "center",
@@ -52,13 +52,13 @@ export const styles = StyleSheet.create({
 
   incomeAmount: {
     color: "#4ade80",
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "700",
   },
 
   expenseAmount: {
     color: "#ff6b6b",
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "700",
   },
   actions: {

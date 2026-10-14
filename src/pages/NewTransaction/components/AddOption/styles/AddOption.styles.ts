@@ -4,7 +4,7 @@ import { colors } from "../../../../../styles/colors";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 14,
+    marginBottom: 12,
     borderRadius: 26,
     overflow: "hidden",
 
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    minHeight: 112,
+    minHeight: 100,
 
     flexDirection: "row",
     alignItems: "center",

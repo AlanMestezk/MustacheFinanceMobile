@@ -12,12 +12,12 @@ export const styles = StyleSheet.create({
   },
 
   logo: {
-    width: 380,
-    height: 380,
+    width: 340,
+    height: 340,
     resizeMode: "contain",
   },
   subtitle: {
-    marginTop: -170,
+    marginTop: -155,
     fontSize: 15,
     lineHeight: 27,
     fontWeight: "700",

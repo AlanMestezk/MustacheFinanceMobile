@@ -2,13 +2,13 @@ import { Feather } from "@expo/vector-icons";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
-    Alert,
-    ScrollView,
-    Switch,
-    Text,
-    TouchableOpacity,
-    View,
+  ActivityIndicator,
+  Alert,
+  ScrollView,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 import { router } from "expo-router";
