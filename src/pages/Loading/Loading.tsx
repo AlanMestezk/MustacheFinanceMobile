@@ -1,9 +1,10 @@
-import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
+import LottieView from "lottie-react-native";
 import { useEffect } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
+import mustacheAnimation from "../../../assets/logo/animations/mustache-loading.json";
 import { styles } from "./styles/Loading.styles";
 
 export const Loading = () => {
@@ -38,13 +39,12 @@ export const Loading = () => {
       <View style={styles.overlay} />
 
       <View style={styles.content}>
-        <Image
-          source={require("../../../assets/images/transparent-loadLoginAcount (1).gif")}
+        <LottieView
+          source={mustacheAnimation}
+          autoPlay
+          loop
           style={styles.gif}
-          contentFit="contain"
         />
-
-        <Text style={styles.loadingText}>Accessing your account...</Text>
       </View>
     </View>
   );

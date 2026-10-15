@@ -32,8 +32,8 @@ export const styles = StyleSheet.create({
   },
 
   gif: {
-    width: 500,
-    height: 300,
+    width: 700,
+    height: 400,
   },
 
   loadingText: {
