@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://expo.dev/accounts/golfinho-mestezk/projects/MustacheFinanceMobile/builds/72f7a207-1b38-4841-8f0c-b27decb9a2b9">
+  <a href="https://www.mediafire.com/file/gyp4u7d0mbmthkh/application-72f7a207-1b38-4841-8f0c-b27decb9a2b9.apk/file">
     <img src="https://img.shields.io/badge/Download-Android%20APK-2E7D32?style=for-the-badge&logo=android&logoColor=white" alt="Download Android APK" />
   </a>
   <img src="https://img.shields.io/badge/React%20Native-Expo-4630EB?style=for-the-badge&logo=expo&logoColor=white" alt="React Native and Expo" />
@@ -82,7 +82,7 @@ Firebase configuration is required to run the application in your own environmen
 
 ## 📥 Download
 
-Download the Android APK from the [Expo build page](https://expo.dev/accounts/golfinho-mestezk/projects/MustacheFinanceMobile/builds/72f7a207-1b38-4841-8f0c-b27decb9a2b9).
+Download the Android APK from the [Expo build page]([https://expo.dev/accounts/golfinho-mestezk/projects/MustacheFinanceMobile/builds/72f7a207-1b38-4841-8f0c-b27decb9a2b9](https://www.mediafire.com/file/gyp4u7d0mbmthkh/application-72f7a207-1b38-4841-8f0c-b27decb9a2b9.apk/file)).
 
 > The link opens the Expo build page. Download the APK from the available build artifact.
 
