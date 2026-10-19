@@ -1,57 +1,96 @@
-# 🥸 Mustache Finance Mobile
 
-> A mobile application for personal financial organization and planning.
 
-## 🚧 Project Status
+<p align="center">
+  <img width="260" alt="Mustache Finance golden mustache logo" src="https://github.com/user-attachments/assets/d67cfd21-10ad-4814-9056-b216bd86cb8f" />
+</p>
 
-**Under Construction**
+<p align="center">
+  <strong>Personal finance management, wherever you go.</strong><br/>
+  A mobile app for managing income, expenses, and financial goals.
+</p>
 
-Mustache Finance Mobile is currently under active development.
+<p align="center">
+  <a href="https://expo.dev/accounts/golfinho-mestezk/projects/MustacheFinanceMobile/builds/72f7a207-1b38-4841-8f0c-b27decb9a2b9">
+    <img src="https://img.shields.io/badge/Download-Android%20APK-2E7D32?style=for-the-badge&logo=android&logoColor=white" alt="Download Android APK" />
+  </a>
+  <img src="https://img.shields.io/badge/React%20Native-Expo-4630EB?style=for-the-badge&logo=expo&logoColor=white" alt="React Native and Expo" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+</p>
 
-The project is being built as the mobile version of **Mustache Finance**, a personal finance application focused on helping users organize their finances, track their income and expenses, and plan for their financial goals.
+---
 
-## 📱 About the Project
+## 📱 Screenshots
 
-Mustache Finance Mobile aims to provide a simple, modern, and intuitive experience for managing personal finances directly from a mobile device.
+<p align="center">
+  <img width="180" src="https://github.com/user-attachments/assets/618c3dbf-4c53-4787-989c-ac6cc63c9d57" alt="Mustache Finance Mobile screenshot 1" />
+  <img width="180" src="https://github.com/user-attachments/assets/66f70e82-34eb-4cc0-b85c-63270b7b1201" alt="Mustache Finance Mobile screenshot 2" />
+  <img width="180" src="https://github.com/user-attachments/assets/d485766a-8062-48da-bae4-cc9ec4c0683e" alt="Mustache Finance Mobile screenshot 3" />
+</p>
+<p align="center">
+  <img width="180" src="https://github.com/user-attachments/assets/3b4a7dfd-022a-4b99-840d-29a5c859eba2" alt="Mustache Finance Mobile screenshot 4" />
+  <img width="180" src="https://github.com/user-attachments/assets/510ea41d-fdb5-470a-bc7f-f1a066000b87" alt="Mustache Finance Mobile screenshot 5" />
+</p>
 
-The application will allow users to:
+## ✨ Features
 
-- 💰 Manage income
-- 💸 Track expenses
-- 🎯 Create and monitor financial plans
-- 📊 View financial information and reports
-- 🔐 Manage their account securely
-- ☁️ Synchronize financial data through Firebase
+- 💰 Income and expense management
+- 🎯 Financial planning and goals
+- 📊 Financial information and reports
+- 🔐 User authentication
+- ☁️ Firebase cloud data integration
 
-## 🛠️ Technologies
+## 🛠️ Tech Stack
 
-The project is being developed using:
+| Technology | Purpose |
+|---|---|
+| React Native | Mobile app development |
+| Expo | Development and builds |
+| TypeScript | Type safety |
+| Expo Router | Navigation |
+| Firebase Authentication | User authentication |
+| Cloud Firestore | Data storage |
 
-- **React Native**
-- **Expo**
-- **TypeScript**
-- **Expo Router**
-- **Firebase**
-- **Firestore**
-
-## 🎨 Project Philosophy
-
-Mustache Finance is designed around a simple idea:
-
-> **Take control of your money. Take control of your plans.**
-
-The mobile application follows the same visual identity and core concepts established in the Mustache Finance web application, while providing an experience specifically designed for mobile devices.
-
-## 📂 Project Structure
-
-The application follows a modular architecture designed to keep screens, components, services, and styles separated and maintainable.
+## 🏗️ Project Structure
 
 ```text
 src/
-├── app/           # Application routes
-├── pages/         # Application screens
-├── components/    # Reusable components
+├── app/           # Routes
+├── pages/         # Screens
+├── components/    # Reusable UI components
 ├── firebase/      # Firebase configuration
 ├── services/      # Application services
-├── types/         # TypeScript types
+├── types/         # TypeScript definitions
 └── utils/         # Utility functions
+```
+
+## 🚀 Getting Started
+
+**Requirements:** Node.js and npm.
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd MustacheFinanceMobile
+npm install
+npx expo start
+```
+
+Open the project using Expo Go or a compatible development environment.
+
+## 🔒 Configuration
+
+Firebase configuration is required to run the application in your own environment. Keep private credentials and service account keys out of version control.
+
+## 📥 Download
+
+Download the Android APK from the [Expo build page](https://expo.dev/accounts/golfinho-mestezk/projects/MustacheFinanceMobile/builds/72f7a207-1b38-4841-8f0c-b27decb9a2b9).
+
+> The link opens the Expo build page. Download the APK from the available build artifact.
+
+## 👨‍💻 Author
+
+**Alan Mestezk**
+
+<p align="center">
+  <em>Take control of your money. Take control of your plans.</em><br/><br/>
+  Made with 💙 and a little 🥸
+</p>
