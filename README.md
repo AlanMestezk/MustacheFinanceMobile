@@ -1,7 +1,8 @@
 
 
+
 <p align="center">
-  <img width="260" alt="Mustache Finance golden mustache logo" src="https://github.com/user-attachments/assets/d67cfd21-10ad-4814-9056-b216bd86cb8f" />
+  <img width="400" height="300" alt="logo" src="https://github.com/user-attachments/assets/afcc7585-5afb-44b3-8d88-5ad240bab8ed" />
 </p>
 
 <p align="center">
